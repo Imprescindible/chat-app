@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Get-Process *)",
+      "PowerShell(Get-WmiObject *)",
+      "PowerShell(Stop-Process *)",
+      "PowerShell(Start-Process -FilePath \"cmd.exe\" -ArgumentList \"/c cd D:\\\\chat\\\\server && npm run dev\" -WindowStyle Hidden; Write-Host \"server starting\")",
+      "PowerShell(Start-Sleep -Seconds 4; Invoke-RestMethod -Uri \"http://localhost:3001/health\" -ErrorAction SilentlyContinue)",
+      "PowerShell(Start-Sleep -Seconds 3; try { Invoke-RestMethod -Uri \"http://localhost:3001/health\" } catch { $_.Exception.Message })",
+      "Bash(npm run *)",
+      "Bash(echo \"server pid: $!\")",
+      "Bash(echo \"client pid: $!\")",
+      "Bash(netstat -ano)",
+      "Bash(kill -9 13920)",
+      "Bash(echo \"new server pid: $!\")",
+      "Bash(curl -s http://localhost:3001/health)"
+    ]
+  }
+}

@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        Int        @id @default(autoincrement())
+  email     String     @unique
+  name      String
+  password  String
+  createdAt DateTime   @default(now())
+  messages  Message[]
+  reactions Reaction[]
+  rooms     Room[]     @relation("RoomMembers")
+}
+
+model Room {
+  id        Int       @id @default(autoincrement())
+  name      String
+  isPrivate Boolean   @default(false)
+  createdAt DateTime  @default(now())
+  messages  Message[]
+  members   User[]    @relation("RoomMembers")
+}
+
+model Message {
+  id        Int        @id @default(autoincrement())
+  content   String
+  fileUrl   String?
+  fileName  String?
+  fileMime  String?
+  createdAt DateTime   @default(now())
+  userId    Int
+  user      User       @relation(fields: [userId], references: [id])
+  roomId    Int
+  room      Room       @relation(fields: [roomId], references: [id])
+  reactions Reaction[]
+}
+
+model Reaction {
+  id        Int      @id @default(autoincrement())
+  emoji     String
+  userId    Int
+  messageId Int
+  user      User     @relation(fields: [userId], references: [id])
+  message   Message  @relation(fields: [messageId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, messageId, emoji])
+}

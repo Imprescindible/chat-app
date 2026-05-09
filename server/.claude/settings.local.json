@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Get-ChildItem -Path \"D:\\\\chat\" -Recurse -Force)",
+      "Bash(Select-Object FullName, PSIsContainer)",
+      "Bash(Format-Table -AutoSize)",
+      "Bash(cd /d D:/chat/client)",
+      "Bash(npm install *)",
+      "PowerShell($login = Invoke-WebRequest -Uri \"http://localhost:3001/auth/login\" -Method POST -ContentType \"application/json\" -Body '{\"email\":\"test@test.com\",\"password\":\"123456\"}' -UseBasicParsing -ErrorAction SilentlyContinue; $login.StatusCode; $login.Content)",
+      "PowerShell(Get-NetTCPConnection *)",
+      "PowerShell(Stop-Process *)",
+      "PowerShell(New-Item *)",
+      "Bash(npx tsc *)",
+      "PowerShell(Get-Process *)",
+      "PowerShell(Invoke-WebRequest -Uri \"http://localhost:3001/health\" -UseBasicParsing | Select-Object StatusCode, Content)",
+      "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3001/health\" -UseBasicParsing -TimeoutSec 5; Write-Output $r.StatusCode; Write-Output $r.Content } catch { Write-Output $_.Exception.Message })",
+      "PowerShell(Start-Sleep -Seconds 6; try { $r = Invoke-WebRequest -Uri \"http://localhost:3001/health\" -UseBasicParsing -TimeoutSec 5; Write-Output \"health: $\\($r.StatusCode\\)\" } catch { Write-Output \"health error: $\\($_.Exception.Message\\)\" })"
+    ]
+  }
+}
