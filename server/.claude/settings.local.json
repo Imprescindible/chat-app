@@ -14,7 +14,8 @@
       "PowerShell(Get-Process *)",
       "PowerShell(Invoke-WebRequest -Uri \"http://localhost:3001/health\" -UseBasicParsing | Select-Object StatusCode, Content)",
       "PowerShell(try { $r = Invoke-WebRequest -Uri \"http://localhost:3001/health\" -UseBasicParsing -TimeoutSec 5; Write-Output $r.StatusCode; Write-Output $r.Content } catch { Write-Output $_.Exception.Message })",
-      "PowerShell(Start-Sleep -Seconds 6; try { $r = Invoke-WebRequest -Uri \"http://localhost:3001/health\" -UseBasicParsing -TimeoutSec 5; Write-Output \"health: $\\($r.StatusCode\\)\" } catch { Write-Output \"health error: $\\($_.Exception.Message\\)\" })"
+      "PowerShell(Start-Sleep -Seconds 6; try { $r = Invoke-WebRequest -Uri \"http://localhost:3001/health\" -UseBasicParsing -TimeoutSec 5; Write-Output \"health: $\\($r.StatusCode\\)\" } catch { Write-Output \"health error: $\\($_.Exception.Message\\)\" })",
+      "Bash(git *)"
     ]
   }
 }
