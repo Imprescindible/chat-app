@@ -144,6 +144,7 @@ io.on("connection", (socket) => {
 
 httpServer.listen(PORT, async () => {
   console.log(`Server running on port ${PORT}`);
+  console.log("Allowed origins:", ALLOWED_ORIGINS);
   await prisma.$queryRaw`SELECT 1`;
   console.log("Database connected");
 });
