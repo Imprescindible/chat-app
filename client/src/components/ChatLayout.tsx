@@ -24,7 +24,7 @@ export default function ChatLayout({ user, token, onLogout }: Props) {
   currentRoomRef.current = currentRoom;
 
   useEffect(() => {
-    const s = io("http://localhost:3001", { auth: { token } });
+    const s = io(import.meta.env.VITE_API_URL ?? "http://localhost:3001", { auth: { token } });
     setSocket(s);
     s.on("room_deleted", (roomId: number) => {
       const remove = (list: Room[]) => list.filter((r) => r.id !== roomId);
