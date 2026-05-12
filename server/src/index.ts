@@ -14,15 +14,20 @@ import usersRouter from "./routes/users";
 import dmRouter from "./routes/dm";
 import reactionsRouter from "./routes/reactions";
 
+const ALLOWED_ORIGINS = [
+  "http://localhost:5173",
+  "https://chat-app-zeta-nine-45.vercel.app",
+];
+
 const app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
-  cors: { origin: "http://localhost:5173", credentials: true },
+  cors: { origin: ALLOWED_ORIGINS, credentials: true },
 });
 
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3001;
 
-app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: ALLOWED_ORIGINS, credentials: true }));
 app.use(express.json());
 app.use("/uploads", express.static(path.resolve(__dirname, "../uploads")));
 
